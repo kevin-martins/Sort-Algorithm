@@ -9,16 +9,50 @@ def usage():
     print('How to use:')
     print('./tri.py')
     print('\033[32mFlags:')
-    print('\t-help: Print the \'How to use\' pannel.')
+    print('\t-help: Print the \'How to use\' pannel')
     print('\t-all: Lunch all kind of sort algorithm')
     print('\t-tri: Kind of sort algorithm the program have')
     print('\t-bubble: Specify the Bubble Sort algorithm')
     print('\t-insert: Specify the Insert Sort algorythm')
     print('\t-print_unsorted: Print the unsorted list of numbers')
     print('\t-print_sorted: Print the sorted list of numbers')
-    print('\t-repeat: False by default. Can be set to true by adding the value after.')
-    print('\t-number: 100 by default. You can change it by adding the desier value after.')
-    print('\t-max: 1000 by default.You can change it by adding the desier value after.\033[0m')
+    print('\t-repeat: False by default. Can be set to true by adding the value after')
+    print('\t-number: 100 by default. You can change it by adding the desier value after')
+    print('\t-max: 1000 by default.You can change it by adding the desier value after\033[0m')
+
+def sort_algorithm():
+    print('Sort algorithm:\n\t-Bubble sort\n\t-Insert sort')
+
+def more_info(duration, comp, dep, print_list):
+    if print_list:
+        print('\nIt took ', duration, 'seconds')
+        print(comp , ' comparaison, ', dep, ' moves')
+    else:
+        print('\tIt took ', duration, 'seconds')
+        print('\t', comp , ' comparaison, ', dep, ' moves')
+
+def bubble_algorithm(unsortedList, print_unsorted, print_sorted):
+    print('-bubble_sort:')
+    comp = 0
+    dep = 0
+    start = time.time()
+    sortedList, comp, dep = bubble_sort.bubble_sort(unsortedList, comp, dep)
+    end = time.time()
+    if print_sorted:
+        print('sorted list:   ', sortedList)
+    more_info(round(end-start, 3), comp, dep, print_sorted)
+    
+
+def insert_algorithm(unsortedList, print_unsorted, print_sorted):
+    print('-insert_sort:')
+    comp = 0
+    dep = 0
+    start = time.time()
+    sortedList, comp, dep = insert_sort.insert_sort(unsortedList, comp, dep)
+    end = time.time()
+    if print_sorted:
+        print('sorted list:   ', sortedList)
+    more_info(round(end-start, 3), comp, dep, print_sorted)
 
 def start(algo, auto, print_unsorted, print_sorted):
     unsortedList = []
@@ -28,32 +62,13 @@ def start(algo, auto, print_unsorted, print_sorted):
         unsortedList = generator.main()
     if print_unsorted:
         print('unsorted list: ', unsortedList)
+        print('\nFor ', len(unsortedList), ' numbers:')
+    else:
+        print('For ', len(unsortedList), ' numbers:')
     if algo == 'bubble_sort' or algo == 'all':
-        print('bubble_sort:')
-        comp = 0
-        dep = 0
-        list_to_sort = unsortedList[:]
-        start = time.time()
-        sortedList, comp, dep = bubble_sort.bubble_sort(list_to_sort, comp, dep)
-        end = time.time()
-        if print_sorted:
-            print('sorted list:   ', sortedList)
-        duration = round(end-start, 3)
-        print('It takes ', duration, 'seconds to sort ', len(sortedList), ' numbers.')
-        print(comp , ' comparaison, ', dep, ' moves')
+        bubble_algorithm(unsortedList[:], print_unsorted, print_sorted)
     if algo == 'insert_sort' or algo == 'all':
-        print('insert_sort:')
-        comp = 0
-        dep = 0
-        list_to_sort = unsortedList[:]
-        start = time.time()
-        sortedList, comp, dep = insert_sort.insert_sort(list_to_sort, comp, dep)
-        end = time.time()
-        duration = round(end-start, 3)
-        if print_sorted:
-            print('sorted list:   ', sortedList)
-        print('It takes ', duration, 'seconds to sort ', len(sortedList), ' numbers.')
-        print(comp , ' comparaison, ', dep, ' moves')
+        insert_algorithm(unsortedList[:], print_unsorted, print_sorted)
 
 def main():
     algo = 'all'
@@ -83,10 +98,10 @@ def main():
     if print_help:    
         usage()
         if print_algo:
-            print('Sort Algorithm: Bubble Sort, Insert Sort.')
+            sort_algorithm()
         return 0
     if print_algo:
-        print('Sort Algorithm: Bubble Sort, Insert Sort.')
+        sort_algorithm()
     start(algo, auto, print_unsorted, print_sorted)
 
 if __name__ == '__main__':
