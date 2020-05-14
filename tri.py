@@ -9,16 +9,16 @@ def usage():
     print('How to use:')
     print('./tri.py')
     print('\033[32mFlags:')
-    print('\t-help: Print the \'How to use\' pannel')
-    print('\t-all: Lunch all kind of sort algorithm')
-    print('\t-tri: Kind of sort algorithm the program have')
-    print('\t-bubble: Specify the Bubble Sort algorithm')
-    print('\t-insert: Specify the Insert Sort algorythm')
-    print('\t-print_unsorted: Print the unsorted list of numbers')
-    print('\t-print_sorted: Print the sorted list of numbers')
-    print('\t-repeat: False by default. Can be set to true by adding the value after')
-    print('\t-number: 100 by default. You can change it by adding the desier value after')
-    print('\t-max: 1000 by default.You can change it by adding the desier value after\033[0m')
+    print('\t-help or -h: Print the \'How to use\' pannel')
+    print('\t-all or -a: Lunch all kind of sort algorithm')
+    print('\t-tri or -t: Kind of sort algorithm the program have')
+    print('\t-bubble or -b: Specify the Bubble Sort algorithm')
+    print('\t-insert or -i: Specify the Insert Sort algorythm')
+    print('\t-print_unsorted or -pu: Print the unsorted list of numbers')
+    print('\t-print_sorted or -ps: Print the sorted list of numbers')
+    print('\t-repeat or -r: False by default. Can be set to true by adding the value after')
+    print('\t-number or -n: 100 by default. You can change it by adding the desier value after')
+    print('\t-max or -m: 1000 by default.You can change it by adding the desier value after\033[0m')
 
 def sort_algorithm():
     print('Sort algorithm:\n\t-Bubble sort\n\t-Insert sort')
@@ -78,19 +78,23 @@ def main():
     print_help = False
     print_algo = False
     for i in range(len(sys.argv)):
-        if sys.argv[i] == '-bubble_sort' or sys.argv[i] == '-bubble' or sys.argv[i] == 'bubble_sort' or sys.argv[i] == 'bubble' or sys.argv[i] == '-b':
+        if sys.argv[i] == '-bubble_sort' or sys.argv[i] == '-bubble' or sys.argv[i] == '-b':
             algo = 'bubble_sort'
-        if sys.argv[i] == '-insert_sort' or sys.argv[i] == '-insert' or sys.argv[i] == 'insert_sort' or sys.argv[i] == 'insert' or sys.argv[i] == '-i':
+        if sys.argv[i] == '-insert_sort' or sys.argv[i] == '-insert' or sys.argv[i] == '-i':
             algo = 'insert_sort'
-        if sys.argv[i] == '-all' or sys.argv[i] == 'all':
+        if sys.argv[i] == '-all' or sys.argv[i] == 'a':
             algo = 'all'
-        if sys.argv[i] == '-print_unsorted':
+        if sys.argv[i] == '-print_unsorted' or sys.argv[i] == '-pu':
             print_unsorted = True
-        if sys.argv[i] == '-print_sorted':
+        if sys.argv[i] == '-print_sorted' or sys.argv[i] == '-ps':
             print_sorted = True
-        if sys.argv[i][0] == '\'' and sys.argv[i][-1] == '\'':
-            print('auto:', sys.argv[i][0])
-            auto = sys.argv[i]
+        if sys.argv[i] == '-user_list' or sys.argv[i] == '-u':
+            try:
+                auto = sys.argv[i+1]
+            except ValueError:
+                print('\033[31mError: Incorrect user_list flag value.\033[0m')
+            except IndexError:
+                print('\033[31mError: Incorrect user_list flag value.\033[0m')
         if sys.argv[i] == '-h' or sys.argv[i] == '-help' or sys.argv[i] == 'help':
             print_help = True
         if sys.argv[i] == '-tri' or sys.argv[i] == '-t':

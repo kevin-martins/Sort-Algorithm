@@ -80,13 +80,13 @@ def check_arg():
     number = 100
     max_value = 1000
     for i in range(len(sys.argv)):
-        if sys.argv[i] == '-h' or sys.argv[i] == '-help' or sys.argv[i] == 'help':
+        if sys.argv[i] == '-h' or sys.argv[i] == '-help':
             usage()
-        if sys.argv[i] == '-repeat' or sys.argv[i] == '-r' or sys.argv[i] == 'repeat':
+        if sys.argv[i] == '-repeat' or sys.argv[i] == '-r':
             repeat = repeat_flag(repeat, i)
-        if sys.argv[i] == '-numbers' or sys.argv[i] == '-n' or sys.argv[i] == 'number':
+        if sys.argv[i] == '-number' or sys.argv[i] == '-n':
             number = number_flag(number, i)
-        if sys.argv[i] == '-max' or sys.argv[i] == '-max_value' or sys.argv[i] == '-m' or sys.argv[i] == 'max':
+        if sys.argv[i] == '-max' or sys.argv[i] == '-max_value' or sys.argv[i] == '-m':
             max_value = max_flag(max_value, i)
     return check_error(repeat, number, max_value)
 
